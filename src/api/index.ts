@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
-import { validateRequest } from '../../shared/validator';
+import { validateRequest } from '../shared/validator';
 import LoggerInstance from '../loaders/logger';
-import { createTaskListSchema } from '../../shared/schemas';
+import { createTaskListSchema } from '../shared/schemas';
 import { createtasklist } from './controller';
 
 const createTaskListHandler = async (req: Request, res: Response) => {

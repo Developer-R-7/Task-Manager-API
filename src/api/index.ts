@@ -43,11 +43,7 @@ export default (): Router => {
     1] If period type is monthly than period should be like Apr 2022 or May 2022 or so on. Same for monthly and yearly.
     2] Due date should be after end of period.
 
-    return a list of all the task asccoiated with a task list id
-    taking id
     taking searchText
-    taking batchSizeper page
-    taking pageNumber
   */
   return app;
 };

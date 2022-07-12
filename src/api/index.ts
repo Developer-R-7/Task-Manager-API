@@ -17,6 +17,7 @@ const createTaskListHandler = async (req: Request, res: Response) => {
 const createTaskHandler = async (req: Request, res: Response) => {
   try {
     await createTask(req.body);
+    res.status(200).json({ success: true, message: 'Task was created' });
   } catch (error) {
     LoggerInstance.error(error);
     res.status(error.code || 500).json({ success: false, message: error.message || 'Internal server error' });
@@ -37,7 +38,7 @@ export default (): Router => {
   const app = Router();
   app.post('/createtasklist', validateRequest('body', createTaskListSchema), createTaskListHandler);
   app.post('/createtask', validateRequest('body', createTaskSchema), createTaskHandler);
-  app.get('/tasklist', validateRequest('query', getTaskListSchema), getTaskListHandler);
+  app.get('/tasklist', validateRequest('body', getTaskListSchema), getTaskListHandler);
   /*
     1] If period type is monthly than period should be like Apr 2022 or May 2022 or so on. Same for monthly and yearly.
     2] Due date should be after end of period.

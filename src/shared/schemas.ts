@@ -12,7 +12,7 @@ export type taskListSchema = InferType<typeof createTaskListSchema>;
 export const createTaskSchema = object({
   taskName: string().required(),
   taskDescription: string().required(),
-  dueDate: date().required(),
+  dueDate: string().required(),
   period: string().required(),
   periodType: string().oneOf([...periodType]),
   taskListId: string().required(),

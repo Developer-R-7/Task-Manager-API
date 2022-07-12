@@ -45,10 +45,18 @@ export const getTaskList = async (body: getTaskSchema) => {
   }
 
   const taskDB = (await dbClient()).collection('tasks');
+  // await taskDB.createIndex({ description: 'text' });
 
   const page = body.pageNumber;
   const limit = body.limit;
   const skipIndex = (page - 1) * limit;
+
+  if (body.searchText !== null) {
+    const result = await taskDB
+      .find({ taskListId: body.taskListID, $text: { $search: body.searchText, $caseSensitive: false } })
+      .toArray();
+    return { totalTasks: result.length, result: result.slice(skipIndex, skipIndex + limit) };
+  }
   const result = await taskDB.find({ taskListId: body.taskListID }).toArray();
   return { totalTasks: result.length, result: result.slice(skipIndex, skipIndex + limit) };
 };

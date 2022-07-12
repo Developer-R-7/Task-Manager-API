@@ -24,6 +24,7 @@ export const getTaskListSchema = object({
   taskListID: string().required(),
   limit: number().required().min(1),
   pageNumber: number().required(),
+  searchText: string().optional().default(null).nullable(),
 });
 
 export type getTaskSchema = InferType<typeof getTaskListSchema>;

@@ -1,4 +1,4 @@
-import { boolean, string, object, InferType, date, number } from 'yup';
+import { boolean, string, object, InferType, number } from 'yup';
 import { periodType } from '../shared/constants';
 
 export const createTaskListSchema = object({
@@ -22,7 +22,7 @@ export type taskSchema = InferType<typeof createTaskSchema>;
 
 export const getTaskListSchema = object({
   taskListID: string().required(),
-  limit: number().required(),
+  limit: number().required().min(1),
   pageNumber: number().required(),
 });
 

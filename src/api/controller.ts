@@ -23,7 +23,6 @@ export const createTask = async (body: taskSchema) => {
 
 export const getTaskList = async (body: getTaskSchema) => {
   const db = (await dbClient()).collection('tasklists');
-  console.log(body.taskListID);
   if ((await db.findOne({ _id: ObjectId(body.taskListID) })) == null) {
     throw { code: 404, message: 'Task List does not exist for this id' };
   }
